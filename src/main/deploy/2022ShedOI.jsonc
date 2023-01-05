@@ -24,10 +24,4 @@
             }
         }
     },
-    "testmode": {
-        "enabled": false,
-        "which":0,
-        "0": {
-        },
-    }
 }
