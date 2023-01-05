@@ -1,0 +1,29 @@
+{
+    "models" :
+    [
+        {
+            "model" : "fms",
+            "instance" : "1",
+            "props" : {
+                "start" : 1.0,
+                "autonomous" : 15.0,
+                "between" : 2.0,
+                "teleop" : 135.0,
+                "create_early" : true                
+            }
+        },
+        {
+            "model" : "shed2022oi",
+            "instance" : "1",
+            "props" : {
+                "index" : 2,
+                "xbox" : false,
+                "name" : "Error Code Xero Custom OI",
+                "axes" : 8,
+                "buttons" : 16,
+                "povs" : 1,
+                "create_early" : true                
+            }
+        }
+    ]
+}

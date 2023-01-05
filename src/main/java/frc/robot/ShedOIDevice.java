@@ -8,9 +8,7 @@ import org.xero1425.base.subsystems.oi.OIPanel;
 import org.xero1425.base.subsystems.oi.OIPanelButton;
 import org.xero1425.base.subsystems.oi.OISubsystem;
 import org.xero1425.misc.BadParameterTypeException;
-import org.xero1425.misc.ISettingsSupplier;
 import org.xero1425.misc.MissingParameterException;
-import org.xero1425.base.actions.InvalidActionRequest;
 
 public class ShedOIDevice extends OIPanel {
     private MotorPowerAction motor1PowerAction;
@@ -22,9 +20,6 @@ public class ShedOIDevice extends OIPanel {
     private int motor1_adjust_num_; // read this analog value -1 to 1 directly
     private int motor2_adjust_num_; // read this analog value -1 to 1 directly
 
-    private double power1 ;
-    private double power2 ;
-
     private Action motor1OffAction;
     private Action motor2OffAction;
     private MotorSubsystem motor1Subsystem;
@@ -35,8 +30,6 @@ public class ShedOIDevice extends OIPanel {
         super(parent, name, index) ;
 
         initializeGadgets() ;
-
-        ISettingsSupplier settings = parent.getRobot().getSettingsSupplier() ;
     }
 
     @Override
@@ -48,28 +41,39 @@ public class ShedOIDevice extends OIPanel {
         motor1OffAction = new MotorPowerAction(motor1Subsystem, 0);
         motor2OffAction = new MotorPowerAction(motor2Subsystem, 0);
 
-        //TODO: value from the knob, not just 0.2
-        motor1PowerAction = new MotorPowerAction(motor1Subsystem, 0.2);
-        motor2PowerAction = new MotorPowerAction(motor2Subsystem, 0.2);
-
+        motor1PowerAction = new MotorPowerAction(motor1Subsystem, 0.0);
+        motor2PowerAction = new MotorPowerAction(motor2Subsystem, 0.0);
     }
 
     @Override
     public void generateActions() {
         int sign1 = 1 ;
         int sign2 = 1 ;
+        double power1 = 0.0 ;
+        double power2 = 0.0 ;
 
-        //TODO: update motor1PowerAction with analog power (-1 to 1) scaled to (0 to 1) power
+        try {
+            power1 = DriverStation.getStickAxis(getIndex(), motor1_adjust_num_) ;
+            power2 = DriverStation.getStickAxis(getIndex(), motor2_adjust_num_) ;
+        }
+        catch(Exception ex)
+        {
+        }
 
         //motor 1 actions
         if (getValue(motor1_enable_) == 0) {
             motor1Subsystem.setAction(motor1OffAction) ;         
         }
-        if (getValue(motor1_enable_) == 1) {
+        else {
             if (getValue(motor1_reverse_) == 1) {//reverse
                 sign1 = -1 ;
             }
-            motor1PowerAction.update(power1*sign1) ;
+            try {
+                motor1PowerAction.update(power1*sign1) ;
+            }
+            catch(Exception ex)
+            {
+            }
             if (motor1Subsystem.getAction() != motor1PowerAction) {
                 motor1Subsystem.setAction(motor1PowerAction) ;   
             }
@@ -77,13 +81,18 @@ public class ShedOIDevice extends OIPanel {
 
         //motor 2 actions
         if (getValue(motor2_enable_) == 0) {
-            motor1Subsystem.setAction(motor1OffAction) ; 
+            motor1Subsystem.setAction(motor2OffAction) ; 
         }
-        if (getValue(motor2_enable_) == 1) {
+        else {
             if (getValue(motor2_reverse_) == 1) {//reverse
                 sign2 = -1 ;
             }
-            motor2PowerAction.update(power2*sign2) ;
+            try {
+                motor2PowerAction.update(power2*sign2) ;
+            }
+            catch(Exception ex) {
+
+            }
             if (motor2Subsystem.getAction() != motor2PowerAction) {
                 motor2Subsystem.setAction(motor2PowerAction) ;   
             }
@@ -94,13 +103,6 @@ public class ShedOIDevice extends OIPanel {
     @Override
     public void computeState() throws Exception {
         super.computeState() ;
-
-        //get from the (joystick_val + 1)/2 
-        double v = DriverStation.getStickAxis(getIndex(), motor1_adjust_num_) ;
-        power1 = (v+1)/2; 
-
-        v = DriverStation.getStickAxis(getIndex(), motor2_adjust_num_) ;
-        power2 = (v+1)/2;
     }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
@@ -121,10 +123,6 @@ public class ShedOIDevice extends OIPanel {
     
         
         motor1_adjust_num_ = getSubsystem().getSettingsValue("panel:gadgets:motor1_adjust").getInteger();
-        // motor1_adjust_ = mapButton(num, OIPanelButton.ButtonType.Level);
-
         motor2_adjust_num_ = getSubsystem().getSettingsValue("panel:gadgets:motor2_adjust").getInteger();
-        // motor2_adjust_ = mapButton(num, OIPanelButton.ButtonType.Level);
-
     }  
 }

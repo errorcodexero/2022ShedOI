@@ -16,6 +16,40 @@
         }
     },
     "subsystems": {
+        "motor1Subsystem" : {
+            "hw": {
+                "motors": {
+                    "1": {
+                        "type": "sparkmax_brushless",
+                        "canid": 1,
+                        "inverted": false,
+                        "neutral_mode": "coast"
+                    }
+                },
+                "encoder": {
+                    "type": "motor",
+                    "m": 1,
+                    "b": 0
+                }
+            }
+        },
+        "motor2Subsystem" : {
+            "hw": {
+                "motors": {
+                    "1": {
+                        "type": "sparkmax_brushless",
+                        "canid": 2,
+                        "inverted": false,
+                        "neutral_mode": "coast"
+                    }
+                },
+                "encoder": {
+                    "type": "motor",
+                    "m": 1,
+                    "b": 0
+                }
+            }
+        },
         "shedoi": {
             "panel": {
                 "index": 2,

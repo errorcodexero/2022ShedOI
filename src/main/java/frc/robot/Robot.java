@@ -9,7 +9,6 @@ import org.xero1425.base.controllers.AutoController;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MissingParameterException;
 import org.xero1425.misc.SimArgs;
-import org.xero1425.base.subsystems.oi.OIPanelButton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,7 +31,7 @@ public class Robot extends XeroRobot {
         if (ret != null)
             return ret;
 
-        return "automode";
+        return "init";
     }
 
     protected void hardwareInit() throws Exception {
