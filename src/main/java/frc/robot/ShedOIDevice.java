@@ -1,16 +1,14 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.xero1425.base.actions.Action;
-import org.xero1425.base.subsystems.motorsubsystem.MotorEncoderGotoAction;
 import org.xero1425.base.subsystems.motorsubsystem.MotorPowerAction;
 import org.xero1425.base.subsystems.motorsubsystem.MotorSubsystem;
 import org.xero1425.base.subsystems.oi.OIPanel;
+import org.xero1425.base.subsystems.oi.OIPanelButton;
 import org.xero1425.base.subsystems.oi.OISubsystem;
-import org.xero1425.base.subsystems.oi.OILed.State;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.ISettingsSupplier;
-import org.xero1425.misc.MessageLogger;
-import org.xero1425.misc.MessageType;
 import org.xero1425.misc.MissingParameterException;
 import org.xero1425.base.actions.InvalidActionRequest;
 
@@ -23,6 +21,12 @@ public class ShedOIDevice extends OIPanel {
     private int motor2_reverse_;
     private int motor1_adjust_; // read this analog value -1 to 1 directly
     private int motor2_adjust_; // read this analog value -1 to 1 directly
+
+    private Action motor1OffAction;
+    private Action motor2OffAction;
+    private MotorSubsystem motor1Subsystem;
+    private MotorSubsystem motor2Subsystem;
+
 
     public ShedOIDevice(OISubsystem parent, String name, int index) throws BadParameterTypeException, MissingParameterException {
         super(parent, name, index) ;
@@ -62,11 +66,11 @@ public class ShedOIDevice extends OIPanel {
             if (getValue(motor1_reverse_) == 1) {//reverse
                 sign1 = -1 ;
             }
-            motor1Subsystem.setAction(motor1PowerAction*sign1) ;       
+            motor1Subsystem.setAction(motor1PowerAction*sign1) ;
         }
 
         //motor 2 actions
-        if (getValue(motor2__enable) == 0) {
+        if (getValue(motor2_enable_) == 0) {
             motor1Subsystem.setAction(motor1OffAction) ; 
         }
         if (getValue(motor2_enable_) == 1) {
