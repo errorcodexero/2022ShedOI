@@ -22,8 +22,8 @@ public class ShedOIDevice extends OIPanel {
     private int motor1_adjust_num_; // read this analog value -1 to 1 directly
     private int motor2_adjust_num_; // read this analog value -1 to 1 directly
 
-    private int power1 ;
-    private int power2 ;
+    private double power1 ;
+    private double power2 ;
 
     private Action motor1OffAction;
     private Action motor2OffAction;
@@ -55,7 +55,7 @@ public class ShedOIDevice extends OIPanel {
     }
 
     @Override
-    public void generateActions() throws InvalidActionRequest {
+    public void generateActions() {
         int sign1 = 1 ;
         int sign2 = 1 ;
 
