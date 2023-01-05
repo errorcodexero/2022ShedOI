@@ -21,7 +21,7 @@ public class ShedOISubsystem extends OISubsystem {
         MessageLogger logger = getRobot().getMessageLogger() ;
 
         try {
-            oipanel_ = new ShedOIDevice(this, "OI", 1) ;
+            oipanel_ = new ShedOIDevice(this, "OI", 2) ;
             addHIDDevice(oipanel_) ;
         }
         catch(Exception ex) {

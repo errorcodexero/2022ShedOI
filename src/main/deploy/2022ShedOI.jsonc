@@ -16,141 +16,18 @@
         }
     },
     "subsystems": {
-        "swerve2022oi": {
-            "swerve_gamepad": {
-                "index": 0,
-                "angle": {
-                    "maximum": 180,
-                    "deadband": 0.05
-                },
-                "position": {
-                    "maximum": 4.5,
-                    "deadband": {
-                        "x": 0.1,
-                        "y": 0.1
-                    }
-                },
-                "power": 1.5
-            },
+        "shedoi": {
             "panel": {
                 "index": 2,
                 "gadgets": {
-                    "automode": 0,
-                    "shoot_collect_mode": 6,
-                    "collect_onoff": 3,
-                    "climb-lock": 4,
-                    "start-climb": 9,
-                    "deploy-climber": 7,
-                    "abort-climb": 1,
-                    "eject": 2,
-                    "shoot_manual_mode": 5,
-                    "throughput": 8
                 },
-                "outputs": {
-                    "ball1": 1,
-                    "ball2": 2,
-                    "shooting": {
-                        "limelight": 4,
-                        "turret": 3,
-                        "shooter": 5,
-                        "hood": 6
-                    }
-                }
             }
         }
     },
     "testmode": {
-        "enabled": true,
-        "which":4,
+        "enabled": false,
+        "which":0,
         "0": {
-            "angle": 0.0,
-            "power": 0.2
         },
-        "1": {
-            "angle": 0.0,
-            "power": 0.9,
-            "duration": 1.5
-        },
-        "2": {
-            "angle": 0.0,
-            "speed": 0.5
-        },
-        "3": {
-            "angle": 0.0,
-            "speed": 2,
-            "duration": 6.0
-        },
-        "4": {
-            "name": "test_straight"
-        },
-        "5": {
-            "angle": 0.0,
-            "power": 0.1,
-            "duration": 10
-        },
-        "10": {
-            "duration": 4
-        },
-        "11": {
-            "power": 0.2,
-            "duration": 0.1
-        },
-        "12": {
-            "down" : 2900,
-            "up" : 0
-        },
-        "13": {
-            "updown": 0.0,
-            "spinner": 0.3,
-            "duration": 1.0
-        },
-        "20": {
-            "power": 0.5,
-            "duration": 2.0
-        },
-        "30": {
-            "power": 0.5,
-            "duration": 5.0
-        },
-        "40": {
-            "power": 0.5,
-            "duration": 2
-        },
-        "41": {
-            "velocity": 2000
-        },
-        "50": {
-            // Hood move motor test mode
-            "power": 0.2,
-            "duration": 0.2
-        },
-        "51": {
-            "position": 208
-        },
-        "60": {
-            // Turret move motor test mode
-            "power": 0.20,
-            "duration": 0.1
-        },
-        "61": {
-            "angle": 4
-        },
-        "62": {
-            "delay": 1.0
-        },
-        "70" : {
-            "power": 0.5,
-            "duration": 1.0
-        },
-        "71" : {
-            "up" : 3000,
-            "down" : 50
-        },
-        "80": {
-            "delay": 20
-        },
-        "82": {
-            "delay": 3
-        }
     }
 }
