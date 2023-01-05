@@ -64,7 +64,6 @@ public class ShedOIDevice extends OIPanel {
 
     }
 
-
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
         int num ;
         

@@ -12,7 +12,7 @@ import org.xero1425.misc.MissingParameterException;
 public class ShedOISubsystem extends OISubsystem {
     private ShedOIDevice oipanel_ ;
 
-    public final static String SubsystemName = "swerve2022oi";
+    public final static String SubsystemName = "shedoi";
     private final static String OIHIDIndexName = "panel:index";
 
     public ShedOISubsystem(Subsystem parent, DriveBaseSubsystem db) {
