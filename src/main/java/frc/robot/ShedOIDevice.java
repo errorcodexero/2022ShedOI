@@ -43,6 +43,10 @@ public class ShedOIDevice extends OIPanel {
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
         int num ;
+        
+        num = getSubsystem().getSettingsValue("panel:gadgets:shoot_collect_mode").getInteger();
+        collect_v_shoot_gadget_ = mapButton(num, OIPanelButton.ButtonType.Level);
 
-    }
+      
+    }  
 }
